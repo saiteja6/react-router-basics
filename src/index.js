@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 const Home = () => {
   return <h2>Home Page</h2>;
@@ -14,16 +14,25 @@ const Contact = () => {
   return <h2>Contact Page</h2>;
 };
 
+const NotFound = () => {
+  return <h2>Page Not found.</h2>;
+};  
+
 const App = () => {
   return (
     <BrowserRouter>
-      <Route path="/" component={Home} />
+      <Switch>
+        <Route path="/" component={Home} exact={true} />
+        <Route path="/about" component={About} />
+        <Route path="/contact" component={Contact} />
+        <Route component={NotFound} />
+      </Switch>
     </BrowserRouter>
   );
 };
 
 ReactDOM.render(
-<h1>Introduction to Routing</h1>,
+<App />,
   document.getElementById('root')
 );
 
